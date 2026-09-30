@@ -64,9 +64,8 @@
   @keyframes mv{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* reveal on scroll */
-  html.js.canreveal .rv:not(.on){opacity:0;transform:translateY(34px)}
-  html.js.canreveal .rv{transition:opacity .7s ease,transform .7s ease}
-  html.js.canreveal .rv.on{opacity:1;transform:none}
+  html.js.canreveal .rv{transition:transform .6s ease}
+  html.js.canreveal .rv:not(.on){transform:translateY(18px)}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.marq span{animation:none}}
 
   .strip{padding:84px 0}
