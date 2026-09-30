@@ -22,6 +22,19 @@
 
   .hdr{position:sticky;top:0;z-index:50;background:rgba(250,247,240,.92);backdrop-filter:blur(10px);border-bottom:1px solid #e4dcc8}
   .hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .hdr-grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+  .hdr-grid .logo-fam{text-align:right}
+  .hdr nav{display:flex;gap:24px;justify-content:center;margin-top:8px}
+  .hdr nav a{color:var(--muted);text-decoration:none;font-size:14.5px;transition:color .15s}
+  .hdr nav a:hover{color:var(--emerald)}
+  @media(max-width:760px){
+    .hdr-grid{grid-template-columns:1fr auto 1fr;gap:6px}
+    .logo{font-size:15px}
+    .logo-fam{font-size:15px}
+    #logo3d-wrap{width:120px;height:52px}
+    .hdr nav{flex-wrap:wrap;gap:5px 14px}
+    .hdr nav a{font-size:13px}
+  }
   .logo{font-size:20px;color:var(--emerald);font-weight:bold;letter-spacing:.3px;
     text-shadow:0 1px 0 #16402f,0 2px 0 #123727,0 3px 0 #0f2f21,0 4px 0 #0c271b,0 5px 0 #0a2016,0 6px 10px rgba(20,58,44,.5)}
   .logo span{color:var(--gold-dark)}
@@ -219,73 +232,19 @@
 <script>document.documentElement.classList.add('js');if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('canreveal')}</script></head>
 <body>
 
-<header class="hdr"><div class="wrap">
-  <div style="display:flex;align-items:center;gap:6px">
-  <div class="logo">Богдана <span>Козырева</span></div>
-  <!-- 3D LOGO HEADER -->
-<div id="logo3d-wrap" style="width:170px;height:70px;position:relative;flex-shrink:0;overflow:hidden"></div>
-<script type="importmap">
-{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
-</script>
-<script type="module">
-import * as THREE from 'three';
-const wrap = document.getElementById('logo3d-wrap');
-const scene = new THREE.Scene();
-const cam = new THREE.PerspectiveCamera(36, wrap.clientWidth/wrap.clientHeight, .1, 50);
-cam.position.set(0, 0, 6.6);
-const rend = new THREE.WebGLRenderer({antialias:true, alpha:true});
-rend.setSize(wrap.clientWidth, wrap.clientHeight);
-rend.setPixelRatio(Math.min(devicePixelRatio,2));
-wrap.appendChild(rend.domElement);
-scene.add(new THREE.AmbientLight(0xffffff,.45));
-const key = new THREE.DirectionalLight(0xfff2d0, 2.6); key.position.set(3,4,5); scene.add(key);
-const rim = new THREE.DirectionalLight(0xc9a84c, 1.2); rim.position.set(-4,-2,-3); scene.add(rim);
-const emeraldM = new THREE.MeshStandardMaterial({color:0x1d4d3b, metalness:.5, roughness:.3});
-const goldM    = new THREE.MeshStandardMaterial({color:0xc9a84c, metalness:.9, roughness:.2, emissive:0x33290e});
-// КОЛЬЦО — крутится по часовой (вокруг Z)
-const ringG = new THREE.Group();
-const ring = new THREE.Mesh(new THREE.TorusGeometry(.62,.075,24,90), emeraldM);
-ringG.add(ring);
-const bead = new THREE.Mesh(new THREE.SphereGeometry(.085,20,20), goldM);
-bead.position.set(.62,0,.02); ringG.add(bead); // золотая бусина на кольце — маркер вращения
-scene.add(ringG);
-// БУКВА «Б» —extruded text против часовой (медленно), сама не крутится вокруг Y
-// Строим «Б» из примитивов (надёжно, без FontLoader): вертикальный штамб + две горизонтальные чаши
-const letterG = new THREE.Group();
-const goldText = new THREE.MeshStandardMaterial({color:0xc9a84c, metalness:.85, roughness:.22, emissive:0x2a2108});
-const vert = new THREE.Mesh(new THREE.BoxGeometry(.14,.82,.09), goldText);
-vert.position.x = -.2; letterG.add(vert);
-// верхняя чаша «Б» — полукольцо
-const bowl1 = new THREE.Mesh(new THREE.TorusGeometry(.21,.05,16,40,Math.PI), goldText);
-bowl1.rotation.z = 0; bowl1.position.set(-.05,.19,0); letterG.add(bowl1);
-// нижняя чаша
-const bowl2 = new THREE.Mesh(new THREE.TorusGeometry(.25,.05,16,40,Math.PI*1.15), goldText);
-bowl2.rotation.z = Math.PI*.42; bowl2.position.set(-.03,-.15,0); letterG.add(bowl2);
-scene.add(letterG);
-letterG.position.x = .05;
-// вращения: кольцо по часовой, буква против часовой (лёгкое качание буквы без оборота текста)
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const clock = new THREE.Clock();
-function loop(){ requestAnimationFrame(loop); const dt = Math.min(clock.getDelta(),.05);
-  if(!reduced){
-    ringG.rotation.z -= dt*1.1;        // по часовой
-    letterG.rotation.z += dt*.45;      // против часовой — качание буквы (не текст)
-    letterG.rotation.y = Math.sin(clock.elapsedTime*.7)*.28; // лёгкий 3D-объём буквы без полного оборота
-  }
-  rend.render(scene,cam); }
-loop();
-addEventListener('resize',()=>{ cam.aspect=wrap.clientWidth/wrap.clientHeight; cam.updateProjectionMatrix();
-  rend.setSize(wrap.clientWidth,wrap.clientHeight); });
-</script>
+<header class="hdr"><div class="wrap hdr-grid">
+  <div class="logo">Богдана</div>
+  <div id="logo3d-wrap" style="width:170px;height:70px;position:relative;flex-shrink:0;overflow:hidden"></div>
+  <div class="logo logo-fam">Козырева</div>
 </div>
-  <nav>
-    <a href="#program">Программа</a>
-    <a href="#life">Жизнь</a>
-    <a href="#story">История</a>
-    <a href="#letter">Обращение</a>
-    <a href="#faq">Вопросы</a>
-  </nav>
-</div></header>
+<nav>
+  <a href="#program">Программа</a>
+  <a href="#life">Жизнь</a>
+  <a href="#story">История</a>
+  <a href="#letter">Обращение</a>
+  <a href="#faq">Вопросы</a>
+</nav>
+</header>
 
 <section class="hero">
   <div class="hero-bg"><img src="assets/ksenia/scene_terrace.jpg" alt="" aria-hidden="true"></div>
