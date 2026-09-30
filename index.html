@@ -450,14 +450,14 @@ import * as THREE from 'three';
 const wrap = document.getElementById('logo3d-wrap');
 const scene = new THREE.Scene();
 const cam = new THREE.PerspectiveCamera(38, wrap.clientWidth/wrap.clientHeight, .1, 100);
-cam.position.set(0, 0, 7);
+cam.position.set(0, 0, 5.9);
 const rend = new THREE.WebGLRenderer({antialias:true, alpha:true});
 rend.setSize(wrap.clientWidth, wrap.clientHeight);
 rend.setPixelRatio(Math.min(devicePixelRatio,2));
 wrap.appendChild(rend.domElement);
 // свет: тёплый key + мягкий fill
 scene.add(new THREE.AmbientLight(0xffffff,.35));
-const key = new THREE.DirectionalLight(0xfff2d0, 2.2); key.position.set(4,5,6); scene.add(key);
+const key = new THREE.DirectionalLight(0xfff2d0, 2.8); key.position.set(4,5,6); scene.add(key);
 const rim = new THREE.DirectionalLight(0xc9a84c, 1.4); rim.position.set(-5,-2,-4); scene.add(rim);
 // материалы: изумруд + золото (физически корректные)
 const emerald = new THREE.MeshStandardMaterial({color:0x1d4d3b, metalness:.55, roughness:.28});
@@ -469,8 +469,8 @@ const ring = new THREE.Mesh(new THREE.TorusGeometry(1.55,.16,32,120), emerald); 
 const inner = new THREE.Mesh(new THREE.TorusGeometry(1.05,.07,24,100), goldSoft); logo.add(inner);
 const bar = new THREE.Mesh(new THREE.CapsuleGeometry(.09,1.5,8,16), gold);
 bar.rotation.z = Math.PI/4; logo.add(bar);
-const bead = new THREE.Mesh(new THREE.SphereGeometry(.17,24,24), gold);
-bead.position.set(1.1,-1.1,0); logo.add(bead);
+const bead = new THREE.Mesh(new THREE.SphereGeometry(.22,28,28), goldSoft);
+bead.position.set(1.25,-1.25,.15); logo.add(bead);
 // текст «Б» экструзией
 logo.position.y = .1;
 scene.add(logo);
