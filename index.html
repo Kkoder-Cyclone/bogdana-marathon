@@ -31,7 +31,7 @@
     .hdr-grid{grid-template-columns:1fr auto 1fr;gap:6px}
     .logo{font-size:15px}
     .logo-fam{font-size:15px}
-    #logo3d-wrap{width:120px;height:52px}
+    #logo3d-wrap{width:140px;height:60px}
     .hdr nav{flex-wrap:wrap;gap:5px 14px}
     .hdr nav a{font-size:13px}
   }
@@ -234,7 +234,7 @@
 
 <header class="hdr"><div class="wrap hdr-grid">
   <div class="logo">Богдана</div>
-  <div id="logo3d-wrap" style="width:170px;height:70px;position:relative;flex-shrink:0;overflow:hidden"></div>
+  <div id="logo3d-wrap" style="width:210px;height:88px;position:relative;flex-shrink:0;overflow:hidden"></div>
   <div class="logo logo-fam">Козырева</div>
 </div>
 <nav>
@@ -245,7 +245,7 @@
   <a href="#faq">Вопросы</a>
 </nav>
 </header>
-<div id="logo3d-wrap" style="width:170px;height:70px;position:relative;flex-shrink:0;overflow:hidden"></div>
+<div id="logo3d-wrap" style="width:210px;height:88px;position:relative;flex-shrink:0;overflow:hidden"></div>
 <script type="importmap">
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
 </script>
@@ -259,8 +259,8 @@ const rend = new THREE.WebGLRenderer({antialias:true, alpha:true});
 rend.setSize(wrap.clientWidth, wrap.clientHeight);
 rend.setPixelRatio(Math.min(devicePixelRatio,2));
 wrap.appendChild(rend.domElement);
-scene.add(new THREE.AmbientLight(0xffffff,.45));
-const key = new THREE.DirectionalLight(0xfff2d0, 2.6); key.position.set(3,4,5); scene.add(key);
+scene.add(new THREE.AmbientLight(0xffffff,.55));
+const key = new THREE.DirectionalLight(0xfff2d0, 3.1); key.position.set(3,4,5); scene.add(key);
 const rim = new THREE.DirectionalLight(0xc9a84c, 1.2); rim.position.set(-4,-2,-3); scene.add(rim);
 const emeraldM = new THREE.MeshStandardMaterial({color:0x1d4d3b, metalness:.5, roughness:.3});
 const goldM    = new THREE.MeshStandardMaterial({color:0xc9a84c, metalness:.9, roughness:.2, emissive:0x33290e});
