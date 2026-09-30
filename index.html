@@ -245,6 +245,54 @@
   <a href="#faq">Вопросы</a>
 </nav>
 </header>
+<div id="logo3d-wrap" style="width:170px;height:70px;position:relative;flex-shrink:0;overflow:hidden"></div>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+const wrap = document.getElementById('logo3d-wrap');
+const scene = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(36, wrap.clientWidth/wrap.clientHeight, .1, 50);
+cam.position.set(0, 0, 6.2);
+const rend = new THREE.WebGLRenderer({antialias:true, alpha:true});
+rend.setSize(wrap.clientWidth, wrap.clientHeight);
+rend.setPixelRatio(Math.min(devicePixelRatio,2));
+wrap.appendChild(rend.domElement);
+scene.add(new THREE.AmbientLight(0xffffff,.45));
+const key = new THREE.DirectionalLight(0xfff2d0, 2.6); key.position.set(3,4,5); scene.add(key);
+const rim = new THREE.DirectionalLight(0xc9a84c, 1.2); rim.position.set(-4,-2,-3); scene.add(rim);
+const emeraldM = new THREE.MeshStandardMaterial({color:0x1d4d3b, metalness:.5, roughness:.3});
+const goldM    = new THREE.MeshStandardMaterial({color:0xc9a84c, metalness:.9, roughness:.2, emissive:0x33290e});
+// КОЛЬЦО — по часовой (rotation.z -=)
+const ringG = new THREE.Group();
+ringG.add(new THREE.Mesh(new THREE.TorusGeometry(.62,.075,24,90), emeraldM));
+const bead = new THREE.Mesh(new THREE.SphereGeometry(.085,20,20), goldM);
+bead.position.set(.62,0,.02); ringG.add(bead);
+scene.add(ringG);
+// БУКВА «Б» — флип вокруг оси Y
+const letterG = new THREE.Group();
+const goldText = new THREE.MeshStandardMaterial({color:0xc9a84c, metalness:.85, roughness:.22, emissive:0x2a2108});
+const vert = new THREE.Mesh(new THREE.BoxGeometry(.14,.82,.09), goldText);
+vert.position.x = -.2; letterG.add(vert);
+const bowl1 = new THREE.Mesh(new THREE.TorusGeometry(.21,.05,16,40,Math.PI), goldText);
+bowl1.position.set(-.05,.19,0); letterG.add(bowl1);
+const bowl2 = new THREE.Mesh(new THREE.TorusGeometry(.25,.05,16,40,Math.PI*1.15), goldText);
+bowl2.rotation.z = Math.PI*.42; bowl2.position.set(-.03,-.15,0); letterG.add(bowl2);
+scene.add(letterG);
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clock = new THREE.Clock();
+function loop(){ requestAnimationFrame(loop); const dt = Math.min(clock.getDelta(),.05);
+  if(!reduced){
+    ringG.rotation.z -= dt*1.1;     // кольцо: по часовой
+    letterG.rotation.y += dt*1.6;   // Б: флип по оси Y
+  }
+  rend.render(scene,cam); }
+loop();
+addEventListener('resize',()=>{ cam.aspect=wrap.clientWidth/wrap.clientHeight; cam.updateProjectionMatrix();
+  rend.setSize(wrap.clientWidth,wrap.clientHeight); });
+</script>
+
 
 <section class="hero">
   <div class="hero-bg"><img src="assets/ksenia/scene_terrace.jpg" alt="" aria-hidden="true"></div>
