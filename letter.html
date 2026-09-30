@@ -8,7 +8,7 @@
 <style>
   :root{--emerald:#1d4d3b;--cream:#faf7f0;--cream2:#f3eee0;--gold:#c9a84c;--gold-dark:#8a6d2f;--ink:#2b2b26;--muted:#5a5646}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:Georgia,serif;color:var(--ink);background:
+  body{overflow-x:hidden;font-family:Georgia,serif;color:var(--ink);background:
     radial-gradient(circle at 15% 8%,#f0e9d2 0%,transparent 45%),
     radial-gradient(circle at 90% 90%,#e9efe2 0%,transparent 45%),var(--cream);
     line-height:1.75;overflow-x:hidden}
@@ -17,7 +17,7 @@
   .top img{width:150px;border-radius:50%;border:4px solid var(--gold);margin:0 auto 16px;box-shadow:0 14px 34px rgba(29,77,59,.18)}
   .badge{display:inline-block;background:var(--emerald);color:var(--cream);padding:5px 16px;border-radius:22px;font-size:12px;letter-spacing:2px;margin-bottom:14px}
   h1{color:var(--emerald);font-size:clamp(24px,4vw,34px)}
-  .letter{background:#fff;border:1px solid #e4dcc8;border-left:5px solid var(--gold);border-radius:0 18px 18px 0;
+  .letter{background:#fff;min-width:0;border:1px solid #e4dcc8;border-left:5px solid var(--gold);border-radius:0 18px 18px 0;
     padding:42px 44px;box-shadow:0 16px 44px rgba(43,43,38,.08)}
   .letter .salut{font-size:21px;color:var(--emerald);margin-bottom:18px}
   .letter p{margin-bottom:17px;font-size:17px}
