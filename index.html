@@ -141,6 +141,7 @@
   .life{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
   .life .cell{position:relative;border-radius:16px;overflow:hidden;cursor:default}
   .life .cell img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .life .cell.contain img{object-fit:contain;background:var(--cream2);padding:6px}
   .life .cell:hover img{transform:scale(1.05)}
   .life .cell .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 14px;
     background:linear-gradient(transparent,rgba(20,58,44,.82));color:var(--cream);font-size:14.5px}
@@ -255,13 +256,13 @@
   Это не постановка и не фантазия. Это мой обычный вторник. И твой — тоже может быть таким. Не «когда-нибудь»,
   а через 30 дней.</p>
   <div class="life">
-    <div class="cell c5 tall"><img src="assets/ksenia/scene_terrace.jpg" alt="Утренний чай на террасе"><div class="cap"><b>6:30 — терраса</b>Чай, тишина и туман над лесом. Мой день начинается не с почты.</div></div>
-    <div class="cell c4 tall"><img src="assets/ksenia/gym_home.jpg" alt="Домашний спортзал"><div class="cap"><b>7:15 — лёгкая зарядка</b>Двадцать минут. Без фанатизма. Каждый день — вот весь секрет.</div></div>
-    <div class="cell c3 tall"><img src="assets/ksenia/pantry.jpg" alt="Кладовая с продуктами"><div class="cap"><b>8:00 — кладовая</b>Банки с крупами и корзины овощей — моя аптечка.</div></div>
-    <div class="cell c4 tall"><img src="assets/ksenia/office_business.jpg" alt="Домашний офис"><div class="cap"><b>10:00 — мой бизнес</b>Фермы натуральных продуктов. Построила после 50 — когда говорили «поздно».</div></div>
-    <div class="cell c4 tall"><img src="assets/ksenia/wardrobe.jpg" alt="Гардеробная"><div class="cap"><b>Гардероб</b>Кашемир и лён. Дорогая простота — это про качество, не про бренды.</div></div>
-    <div class="cell c4 tall"><img src="assets/ksenia/scene_lake.jpg" alt="Прогулка у озера"><div class="cap"><b>Вечер — прогулка</b>Восемь тысяч шагов без шагомера. Просто люблю ходить.</div></div>
-    <div class="cell c12 wide"><img src="assets/ksenia/dinner_family.jpg" alt="Семейный ужин"><div class="cap"><b>19:00 — семейный ужин</b>Самое большое богатство — не на счетах. Оно за этим столом. И еда здесь — вкусная и живая, заметь.</div></div>
+    <div class="cell contain"><img src="assets/ksenia/scene_terrace.jpg" alt="Утренний чай на террасе"><div class="cap"><b>6:30 — терраса</b>Чай, тишина и туман над лесом. Мой день начинается не с почты.</div></div>
+    <div class="cell contain"><img src="assets/ksenia/gym_home.jpg" alt="Домашний спортзал"><div class="cap"><b>7:15 — лёгкая зарядка</b>Двадцать минут. Без фанатизма. Каждый день — вот весь секрет.</div></div>
+    <div class="cell contain"><img src="assets/ksenia/pantry.jpg" alt="Кладовая с продуктами"><div class="cap"><b>8:00 — кладовая</b>Банки с крупами и корзины овощей — моя аптечка.</div></div>
+    <div class="cell contain"><img src="assets/ksenia/office_business.jpg" alt="Домашний офис"><div class="cap"><b>10:00 — мой бизнес</b>Фермы натуральных продуктов. Построила после 50 — когда говорили «поздно».</div></div>
+    <div class="cell contain"><img src="assets/ksenia/wardrobe.jpg" alt="Гардеробная"><div class="cap"><b>Гардероб</b>Кашемир и лён. Дорогая простота — это про качество, не про бренды.</div></div>
+    <div class="cell contain"><img src="assets/ksenia/scene_drive.jpg" alt="За рулём кабриолета"><div class="cap"><b>За рулём</b>Красный кабриолет — просто потому что нравится. В 70 можно всё.</div></div>
+    <div class="cell contain"><img src="assets/ksenia/dinner_family.jpg" alt="Семейный ужин"><div class="cap"><b>19:00 — семейный ужин</b>Самое большое богатство — не на счетах. Оно за этим столом. И еда здесь — вкусная и живая, заметь.</div></div>
   </div>
 </div></section>
 
@@ -270,16 +271,16 @@
   <div class="story">
     <div class="st"><div class="yr">Сибирь · молодость</div><h3>Инженер по образованию</h3>
       <p>Родилась и выросла в Сибири. Выучилась на инженера, работала, растила детей. О «своём деле» только мечтала — не до того было.</p>
-      <img src="assets/ksenia/scene_lake.jpg" alt="Сибирь"></div>
+      <img src="assets/ksenia/villa_facade.jpg" alt="Сибирь"></div>
     <div class="st"><div class="yr">После 50 · свой бизнес</div><h3>«Поздно»? Я только начинала</h3>
       <p>Когда все говорили «в твои годы уже поздно начинать», я открыла своё дело — сеть ферм натуральных продуктов. Ни связей, ни капитала. Только дисциплина и вера.</p>
-      <img src="assets/ksenia/office_business.jpg" alt="Бизнес"></div>
+      <img src="assets/ksenia/scene_jet.jpg" alt="Бизнес — выход из самолёта"></div>
     <div class="st"><div class="yr">В 60 · кризис здоровья</div><h3>Минус 14 кг и минус 20 лет</h3>
       <p>Врачи сказали «это возраст». Я сказала «это питание». Убрала сахар, пакетики и «лёгкие» ужины — и за год сбросила 14 кг. Без диет, голодовок и чудо-средств.</p>
-      <img src="assets/ksenia/pantry.jpg" alt="Здоровая еда"></div>
+      <img src="assets/ksenia/villa_pool.jpg" alt="Утреннее плавание"></div>
     <div class="st"><div class="yr">Сегодня · 70 лет</div><h3>Богатство — это энергия</h3>
       <p>Живу в доме у леса, управляю бизнесом, готовлю сама — и чувствую себя лучше, чем в 40. Теперь передаю систему, которая сработала у меня. Она сработает и у тебя.</p>
-      <img src="assets/ksenia/ksenia_ref.jpg" alt="Богдана сегодня"></div>
+      <img src="assets/ksenia/ksenia_v2a.jpg" alt="Богдана сегодня"></div>
   </div>
 </div></section>
 
