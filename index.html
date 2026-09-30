@@ -27,7 +27,11 @@
   .hdr nav{display:flex;gap:24px;align-items:center}
   .hdr nav a{color:var(--muted);text-decoration:none;font-size:14.5px;transition:color .15s}
   .hdr nav a:hover{color:var(--emerald)}
-  @media(max-width:760px){.hdr nav{gap:14px}.hdr nav a:nth-child(n+4){display:none}}
+  @media(max-width:760px){
+    .hdr .wrap{flex-direction:column;height:auto;padding-top:10px;padding-bottom:10px;gap:8px}
+    .hdr nav{flex-wrap:wrap;justify-content:center;gap:6px 18px;width:100%}
+    .hdr nav a{font-size:14px;padding:6px 4px}
+  }
 
   /* ── HERO с параллаксом ── */
   .hero{min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden;
@@ -338,7 +342,7 @@
   <h2>Твои инструменты: <em>дневник и трекер</em></h2>
   <div class="twocol">
     <div class="panel">
-      <h3>📖 Дневник самочувствия</h3>
+      <h3>Дневник самочувствия</h3>
       <p>Каждый вечер — одна строка: что ела, как спала, настроение и победа дня. Через месяц перечитаешь — и не поверишь, что это про тебя. Полные таблицы — внутри марафона.</p>
       <div class="diary">
         <table><tr><th>День</th><th>Ела</th><th>Сон</th><th>Настроение</th><th>Победа</th></tr>
@@ -381,7 +385,7 @@
     </div>
     <div class="ps"><b>P.S.</b> Начни с первого дня — не откладывай на понедельник. Понедельники у нас теперь свободны для пирогов. По воскресеньям.</div>
   </div>
-  <div class="letter-more"><a class="btn ghost" href="letter.html">📖 Читать обращение полностью</a></div>
+  <div class="letter-more"><a class="btn" href="letter.html">Читать обращение →</a></div>
 </div></section>
 
 <section class="strip alt" id="faq"><div class="wrap rv">
@@ -405,9 +409,9 @@
   <p>Оставь заявку — и получи полный марафон: меню на каждый день, рецепты, голосовые письма Богданы, дневник и трекер.</p>
   <button class="btn big" onclick="openModal()">ХОЧУ В КУХНЮ БОГДАНЫ</button>
   <div class="web">
-    <a href="marathon.html">📖 Открыть марафон онлайн</a>
+    <a href="marathon.html">Открыть марафон онлайн →</a>
     &nbsp;·&nbsp;
-    <a href="assets/marathon-30-full.pdf" download>📄 Скачать PDF</a>
+    <a href="assets/marathon-30-full.pdf" download>Скачать PDF ↓</a>
   </div>
   <p class="note">Бесплатно · Без карты · Старт в любой день</p>
 </div></section>
@@ -432,6 +436,64 @@
     <button class="btn gold" onclick="closeModal()">Жду с нетерпением!</button>
   </div>
 </div></div>
+
+
+<!-- 3D LOGO LOOP -->
+<div id="logo3d-wrap" style="height:340px;position:relative;overflow:hidden;background:
+  radial-gradient(circle at 50% 40%,#f0e9d2 0%,transparent 60%),var(--emerald)">
+</div>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+const wrap = document.getElementById('logo3d-wrap');
+const scene = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(38, wrap.clientWidth/wrap.clientHeight, .1, 100);
+cam.position.set(0, 0, 7);
+const rend = new THREE.WebGLRenderer({antialias:true, alpha:true});
+rend.setSize(wrap.clientWidth, wrap.clientHeight);
+rend.setPixelRatio(Math.min(devicePixelRatio,2));
+wrap.appendChild(rend.domElement);
+// свет: тёплый key + мягкий fill
+scene.add(new THREE.AmbientLight(0xffffff,.35));
+const key = new THREE.DirectionalLight(0xfff2d0, 2.2); key.position.set(4,5,6); scene.add(key);
+const rim = new THREE.DirectionalLight(0xc9a84c, 1.4); rim.position.set(-5,-2,-4); scene.add(rim);
+// материалы: изумруд + золото (физически корректные)
+const emerald = new THREE.MeshStandardMaterial({color:0x1d4d3b, metalness:.55, roughness:.28});
+const gold    = new THREE.MeshStandardMaterial({color:0xc9a84c, metalness:.9,  roughness:.18, emissive:0x3a2f10});
+const goldSoft= new THREE.MeshStandardMaterial({color:0xd8b967, metalness:.85, roughness:.22});
+// ЛОГО «Б»: обод (тор) + внутреннее кольцо + перекладина 45° + золотая бусина — фирменная геометрия
+const logo = new THREE.Group();
+const ring = new THREE.Mesh(new THREE.TorusGeometry(1.55,.16,32,120), emerald); logo.add(ring);
+const inner = new THREE.Mesh(new THREE.TorusGeometry(1.05,.07,24,100), goldSoft); logo.add(inner);
+const bar = new THREE.Mesh(new THREE.CapsuleGeometry(.09,1.5,8,16), gold);
+bar.rotation.z = Math.PI/4; logo.add(bar);
+const bead = new THREE.Mesh(new THREE.SphereGeometry(.17,24,24), gold);
+bead.position.set(1.1,-1.1,0); logo.add(bead);
+// текст «Б» экструзией
+const fLoader = new THREE.FontLoader();
+logo.position.y = .1;
+scene.add(logo);
+// золотые частицы вокруг (мягкий объём)
+const pGeo = new THREE.BufferGeometry(); const pN=140, pos=new Float32Array(pN*3);
+for(let i=0;i<pN;i++){ const r=2.4+Math.random()*1.6, th=Math.random()*Math.PI*2;
+  pos[i*3]=r*Math.cos(th); pos[i*3+1]=(Math.random()-.5)*3.4; pos[i*3+2]=r*Math.sin(th)*.35; }
+pGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+const pts = new THREE.Points(pGeo,new THREE.PointsMaterial({color:0xc9a84c,size:.045,transparent:true,opacity:.75}));
+scene.add(pts);
+// луп 360° + качание, reduced-motion уважаем
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let t=0; const clock=new THREE.Clock();
+function loop(){ requestAnimationFrame(loop); const dt=clock.getDelta(); t+=dt;
+  if(!reduced){ logo.rotation.y += dt*.9;                       // полный оборот 360° бесконечно
+    logo.rotation.x = Math.sin(t*.5)*.12;                      // лёгкое качание
+    pts.rotation.y -= dt*.06; }
+  rend.render(scene,cam); }
+loop();
+addEventListener('resize',()=>{ cam.aspect=wrap.clientWidth/wrap.clientHeight; cam.updateProjectionMatrix();
+  rend.setSize(wrap.clientWidth,wrap.clientHeight); });
+</script>
 
 <footer><div class="wrap">Марафон «30 дней с Богданой» · Здоровое питание в любом возрасте · 2026</div></footer>
 
