@@ -21,7 +21,7 @@
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px;width:100%}
 
   .hdr{position:sticky;top:0;z-index:50;background:rgba(250,247,240,.92);backdrop-filter:blur(10px);border-bottom:1px solid #e4dcc8}
-  .hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
   .logo{font-size:20px;color:var(--emerald);font-weight:bold;letter-spacing:.3px;
     text-shadow:0 1px 0 #16402f,0 2px 0 #123727,0 3px 0 #0f2f21,0 4px 0 #0c271b,0 5px 0 #0a2016,0 6px 10px rgba(20,58,44,.5)}
   .logo span{color:var(--gold-dark)}
@@ -223,7 +223,7 @@
   <div style="display:flex;align-items:center;gap:12px">
   <div class="logo">Богдана <span>Козырева</span></div>
   <!-- 3D LOGO HEADER -->
-<div id="logo3d-wrap" style="width:120px;height:60px;position:relative;flex-shrink:0"></div>
+<div id="logo3d-wrap" style="width:150px;height:64px;position:relative;flex-shrink:0;overflow:hidden"></div>
 <script type="importmap">
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
 </script>
@@ -232,7 +232,7 @@ import * as THREE from 'three';
 const wrap = document.getElementById('logo3d-wrap');
 const scene = new THREE.Scene();
 const cam = new THREE.PerspectiveCamera(36, wrap.clientWidth/wrap.clientHeight, .1, 50);
-cam.position.set(0, 0, 5.2);
+cam.position.set(0, 0, 6.6);
 const rend = new THREE.WebGLRenderer({antialias:true, alpha:true});
 rend.setSize(wrap.clientWidth, wrap.clientHeight);
 rend.setPixelRatio(Math.min(devicePixelRatio,2));
@@ -244,25 +244,25 @@ const emeraldM = new THREE.MeshStandardMaterial({color:0x1d4d3b, metalness:.5, r
 const goldM    = new THREE.MeshStandardMaterial({color:0xc9a84c, metalness:.9, roughness:.2, emissive:0x33290e});
 // КОЛЬЦО — крутится по часовой (вокруг Z)
 const ringG = new THREE.Group();
-const ring = new THREE.Mesh(new THREE.TorusGeometry(1,.11,24,90), emeraldM);
+const ring = new THREE.Mesh(new THREE.TorusGeometry(.62,.075,24,90), emeraldM);
 ringG.add(ring);
-const bead = new THREE.Mesh(new THREE.SphereGeometry(.13,20,20), goldM);
-bead.position.set(1,0,0); ringG.add(bead); // золотая бусина на кольце — маркер вращения
+const bead = new THREE.Mesh(new THREE.SphereGeometry(.085,20,20), goldM);
+bead.position.set(.62,0,.02); ringG.add(bead); // золотая бусина на кольце — маркер вращения
 scene.add(ringG);
 // БУКВА «Б» —extruded text против часовой (медленно), сама не крутится вокруг Y
 // Строим «Б» из примитивов (надёжно, без FontLoader): вертикальный штамб + две горизонтальные чаши
 const letterG = new THREE.Group();
 const goldText = new THREE.MeshStandardMaterial({color:0xc9a84c, metalness:.85, roughness:.22, emissive:0x2a2108});
-const vert = new THREE.Mesh(new THREE.BoxGeometry(.26,1.6,.16), goldText);
-vert.position.x = -.45; letterG.add(vert);
+const vert = new THREE.Mesh(new THREE.BoxGeometry(.14,.82,.09), goldText);
+vert.position.x = -.2; letterG.add(vert);
 // верхняя чаша «Б» — полукольцо
-const bowl1 = new THREE.Mesh(new THREE.TorusGeometry(.42,.09,16,40,Math.PI), goldText);
-bowl1.rotation.z = 0; bowl1.position.set(-.1,.38,0); letterG.add(bowl1);
+const bowl1 = new THREE.Mesh(new THREE.TorusGeometry(.21,.05,16,40,Math.PI), goldText);
+bowl1.rotation.z = 0; bowl1.position.set(-.05,.19,0); letterG.add(bowl1);
 // нижняя чаша
-const bowl2 = new THREE.Mesh(new THREE.TorusGeometry(.5,.09,16,40,Math.PI*1.15), goldText);
-bowl2.rotation.z = Math.PI*.42; bowl2.position.set(-.05,-.28,0); letterG.add(bowl2);
+const bowl2 = new THREE.Mesh(new THREE.TorusGeometry(.25,.05,16,40,Math.PI*1.15), goldText);
+bowl2.rotation.z = Math.PI*.42; bowl2.position.set(-.03,-.15,0); letterG.add(bowl2);
 scene.add(letterG);
-letterG.position.x = .12;
+letterG.position.x = .05;
 // вращения: кольцо по часовой, буква против часовой (лёгкое качание буквы без оборота текста)
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clock = new THREE.Clock();
