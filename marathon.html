@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Марафон — 30 дней с Богданой · полный доступ</title>
+<meta name="description" content="Полный марафон: 30 дней, меню на каждый день, рецепты, рецепты красоты. Доступ бесплатный.">
+<link rel="icon" href="data:,">
+<style>
+  :root{--emerald:#1d4d3b;--emerald-dark:#143a2c;--cream:#faf7f0;--cream2:#f3eee0;
+    --gold:#c9a84c;--gold-dark:#8a6d2f;--ink:#2b2b26;--muted:#5a5646}
+  *{margin:0;padding:0;box-sizing:border-box;min-width:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{font-family:Georgia,serif;color:var(--ink);background:var(--cream);line-height:1.6;overflow-x:clip}
+  img{max-width:100%}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;width:100%}
+
+  .hdr{position:sticky;top:0;z-index:50;background:rgba(250,247,240,.96);backdrop-filter:blur(6px);border-bottom:1px solid #e4dcc8}
+  .hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:10px}
+  .logo{font-size:17px;color:var(--emerald);font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .logo span{color:var(--gold-dark)}
+  .hdr .links{display:flex;gap:14px;align-items:center}
+  .hdr .links a{color:var(--muted);text-decoration:none;font-size:14px;white-space:nowrap}
+  .hdr .links a:hover{color:var(--emerald)}
+  .dl{background:var(--gold);color:var(--emerald-dark)!important;padding:7px 14px;border-radius:8px;font-weight:bold}
+  @media(max-width:640px){.hdr .links a:not(.dl){display:none}}
+
+  .top{padding:34px 0 26px;text-align:center;background:
+    radial-gradient(circle at 80% 10%,#f0e9d2 0%,transparent 55%)}
+  .top img{width:130px;border-radius:50%;border:3px solid var(--gold);margin:0 auto 14px}
+  h1{font-size:clamp(24px,4vw,36px);color:var(--emerald);margin-bottom:8px}
+  .top p{color:var(--muted);font-size:16px}
+  .top .dlrow{margin-top:18px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--emerald);color:var(--cream);text-decoration:none;
+    padding:13px 26px;border-radius:10px;font-size:15.5px;font-weight:bold;border:none;cursor:pointer;font-family:inherit}
+  .btn:hover{background:var(--emerald-dark)}
+  .btn.gold{background:var(--gold);color:var(--emerald-dark)}
+
+  .wtab{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:26px 0 6px;position:sticky;top:60px;
+    background:var(--cream);padding:10px 0;z-index:40;border-bottom:1px solid #e4dcc8}
+  .wtab button{background:#fff;border:1.5px solid #d8d0b8;border-radius:20px;padding:8px 16px;
+    font-family:inherit;font-size:14px;cursor:pointer;color:var(--muted);transition:.15s}
+  .wtab button.active{background:var(--emerald);color:var(--cream);border-color:var(--emerald)}
+
+  .day{background:#fff;border:1px solid #e4dcc8;border-radius:14px;padding:20px 22px;margin:14px 0}
+  .day-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .dnum{background:var(--emerald);color:#fff;border-radius:8px;padding:2px 12px;font-weight:bold;font-size:14px;white-space:nowrap}
+  .dtitle{font-size:19px;color:var(--emerald);font-weight:bold}
+  .principle{font-style:italic;color:#4a4636;margin:8px 0}
+  .task{margin:8px 0;font-size:15.5px}
+  .task b{color:var(--gold-dark)}
+  .menu{background:var(--cream2);border-radius:10px;padding:12px 16px;margin-top:10px;font-size:14.5px}
+  .menu .mt{font-weight:bold;color:var(--emerald);margin-bottom:6px}
+  .menu div{margin:3px 0}
+  .menu b{color:var(--gold-dark)}
+  .recipe{background:#eef3ea;border-radius:10px;padding:12px 16px;margin-top:10px;font-size:14.5px}
+  .recipe .rn{font-weight:bold;color:var(--emerald)}
+  .recipe .ri{color:#5a5646;font-size:13px;margin:4px 0}
+  .beauty{background:#f7eef0;border-left:4px solid var(--gold);border-radius:8px;padding:12px 16px;margin-top:10px;font-size:14.5px}
+  .beauty .bn{font-weight:bold;color:#8a6d2f}
+  .quote{font-style:italic;color:#8a6d2f;text-align:right;margin-top:10px;font-size:15px}
+
+  .backtop{position:fixed;bottom:22px;right:22px;background:var(--emerald);color:#fff;width:46px;height:46px;
+    border-radius:50%;display:none;align-items:center;justify-content:center;font-size:20px;cursor:pointer;
+    border:none;z-index:60;box-shadow:0 6px 18px rgba(29,77,59,.3)}
+  footer{padding:24px 0;text-align:center;color:#8a8570;font-size:12.5px;border-top:1px solid #e4dcc8;margin-top:34px}
+  footer a{color:var(--emerald)}
+</style>
+</head>
+<body>
+
+<header class="hdr"><div class="wrap">
+  <div class="logo">Марафон · <span>30 дней с Богданой</span></div>
+  <div class="links">
+    <a href="/" >← На лендинг</a>
+    <a class="dl" href="assets/marathon-30-full.pdf" download>📄 Скачать PDF</a>
+  </div>
+</div></header>
+
+<div class="top"><div class="wrap">
+  <img src="assets/portrait_hero.jpg" alt="Богдана">
+  <h1>Полный марафон · 30 дней</h1>
+  <p>Меню на каждый день · рецепты · рецепты красоты · задания · голос Богданы</p>
+  <div class="dlrow">
+    <a class="btn gold" href="assets/marathon-30-full.pdf" download>📄 Скачать PDF-версию</a>
+    <a class="btn" href="/">← О Богдане</a>
+  </div>
+</div></div>
+
+<div class="wtab" id="wtabs"></div>
+
+<main class="wrap" id="days"></main>
+
+<button class="backtop" id="bt" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<footer><div class="wrap">Марафон «30 дней с Богданой» · веб-версия ·
+<a href="/">лендинг</a> · <a href="assets/marathon-30-full.pdf">PDF</a></div></footer>
+
+<script>
+const WEEKS={1:"Неделя 1 · Сброс",2:"Неделя 2 · Фундамент",3:"Неделя 3 · Энергия",4:"Неделя 4 · Образ жизни"};
+let current=1;
+const tabs=document.getElementById('wtabs'),daysEl=document.getElementById('days');
+for(let w=1;w<=4;w++){
+  const b=document.createElement('button');b.textContent=WEEKS[w];b.dataset.w=w;
+  b.onclick=()=>{current=w;render();[...tabs.children].forEach(x=>x.classList.toggle('active',+x.dataset.w===w));
+    daysEl.scrollIntoView({behavior:'smooth',block:'start'});};
+  tabs.appendChild(b);
+}
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function render(){
+  fetch('assets/marathon-data.json').then(r=>r.json()).then(data=>{
+    daysEl.innerHTML='';
+    data.filter(x=>x.week===current).forEach(d=>{
+      const menu=`<div class="menu"><div class="mt">🍽 Меню дня</div>
+        <div><b>Завтрак:</b> ${esc(d.breakfast)}</div><div><b>Обед:</b> ${esc(d.lunch)}</div>
+        <div><b>Полдник:</b> ${esc(d.snack)}</div><div><b>Ужин:</b> ${esc(d.dinner)}</div></div>`;
+      const rec=d.recipe?`<div class="recipe"><span class="rn">Рецепт дня: ${esc(d.recipe.name)}</span>
+        <div class="ri">Ингредиенты: ${esc(d.recipe.ing)}</div><div>Приготовление: ${esc(d.recipe.steps)}</div></div>`:"";
+      const beauty=d.beauty?`<div class="beauty"><span class="bn">✨ Рецепт красоты: ${esc(d.beauty.name)}</span>
+        <div class="ri">Нужно: ${esc(d.beauty.ing)}</div><div>${esc(d.beauty.steps)}</div></div>`:"";
+      const el=document.createElement('div');el.className='day';
+      el.innerHTML=`<div class="day-head"><span class="dnum">День ${d.d}</span><span class="dtitle">${esc(d.title)}</span></div>
+        <div class="principle">${esc(d.principle)}</div>
+        <div class="task"><b>Задание дня:</b> ${esc(d.task)}</div>${menu}${rec}${beauty}
+        <div class="quote">— ${esc(d.quote)}</div>`;
+      daysEl.appendChild(el);
+    });
+    if(current===1){tabs.children[0].classList.add('active')}
+  });
+}
+window.addEventListener('scroll',()=>{document.getElementById('bt').style.display=scrollY>600?'flex':'none'});
+render();
+</script>
+</body>
+</html>
