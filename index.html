@@ -13,7 +13,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;min-width:0}
   html{overflow-wrap:break-word;word-break:normal}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:hidden}
   body{overflow-x:clip;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--cream);line-height:1.65}
   img{max-width:100%;display:block}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px;width:100%}
@@ -138,7 +138,7 @@
 
   
   /* life feed */
-  .life{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .life{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
   .life .cell{position:relative;border-radius:16px;overflow:hidden;cursor:default}
   .life .cell img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
   .life .cell:hover img{transform:scale(1.05)}
