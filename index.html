@@ -7,6 +7,7 @@
 <meta name="description" content="Бесплатный 30-дневный марафон здорового питания от Богданы Козыревой: меню на каждый день, рецепты блюд и красоты. В 70 я выгляжу на 55 — покажу как.">
 <link rel="icon" href="data:,">
 <style>
+  html.nojs .rv{opacity:1;transform:none}
   :root{
     --emerald:#1d4d3b; --emerald-dark:#143a2c; --cream:#faf7f0; --cream2:#f3eee0;
     --gold:#c9a84c; --gold-dark:#6d531f; --ink:#2b2b26; --muted:#5a5646;
@@ -47,6 +48,7 @@
     padding:16px 34px;border-radius:14px;font-size:16.5px;font-weight:bold;transition:.25s;border:none;cursor:pointer;font-family:inherit;
     box-shadow:var(--shadow-card)}
   .btn:hover{background:var(--emerald-dark);transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+  .btn.gold{background:var(--gold);color:var(--emerald-dark)}
   .btn.ghost{background:transparent;color:var(--emerald);border:2px solid var(--gold);box-shadow:none}
   .btn.ghost:hover{background:var(--gold);color:var(--emerald-dark)}
   .hero-photo{position:relative;justify-self:center}
@@ -62,8 +64,8 @@
   @keyframes mv{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* reveal on scroll */
-  .rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
-  .rv.on{opacity:1;transform:none}
+  html.js .rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+  html.js .rv.on{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.marq span{animation:none}}
 
   .strip{padding:84px 0}
@@ -173,8 +175,8 @@
   /* faq */
   .faq{max-width:820px;margin:0 auto;width:100%}
   details{background:#fff;border-radius:14px;margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow-card)}
-  summary{list-style:none;summary::-webkit-details-marker{display:none}
-    padding:19px 24px;cursor:pointer;font-size:16.5px;font-weight:bold;color:var(--emerald);position:relative}
+  summary{list-style:none;padding:19px 24px;cursor:pointer;font-size:16.5px;font-weight:bold;color:var(--emerald);position:relative}
+  summary::-webkit-details-marker{display:none}
   summary::-webkit-details-marker{display:none}
   summary::after{content:"+";position:absolute;right:22px;font-size:24px;color:var(--gold-dark);transition:.2s}
   details[open] summary::after{content:"–"}
@@ -209,7 +211,7 @@
 
   footer{padding:26px 0;text-align:center;color:#6a6552;font-size:13px;border-top:1px solid #e4dcc8;margin-top:40px}
 </style>
-</head>
+<script>document.documentElement.classList.add('js')</script></head>
 <body>
 
 <header class="hdr"><div class="wrap">
@@ -313,9 +315,9 @@
   </div>
 </div></section>
 
-<section class="qpause">
-  <p>«Богатство — это не цифры на счету.<br><span>Это энергия проснуться и захотеть жить»</span></p>
-  <div class="who">— Богдана Козырева, 70 лет</div>
+<section class="qpause" style="padding:80px 0">
+  <p style="font-size:clamp(21px,2.8vw,32px)">«Самое большое богатство —<br><span>не на счетах. Оно за семейным столом»</span></p>
+  <div class="who">— Богдана · о том, зачем всё это</div>
 </section>
 
 <section class="strip" id="story"><div class="wrap rv">
